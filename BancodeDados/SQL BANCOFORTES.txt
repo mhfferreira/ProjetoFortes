@@ -1,0 +1,90 @@
+create database ‘c:\ProjetoFortes\BancodeDados\BancoF.fdb’
+user ‘SYSDBA’
+password ‘masterkey’
+page_size=4096
+default character set WIN1251;
+
+commit;
+
+connect ‘c:\ProjetoFortes\BancodeDados\BancoFortes.fdb’
+user ‘SYSDBA’
+password ‘masterkey’;
+
+
+create table Professor (
+professorID   integer  primary key  not null,
+nomeprofessor varchar(50)           not null,
+cpfprofessor  varchar(11)           not null);
+
+create SEQUENCE professor_id_sequence;
+
+set term ^ ;
+create TRIGGER professor_autoincrement for Professor
+active before insert position 0
+as begin
+new.professorID = gen_id(professor_id_sequence,1); end
+^ set term ; ^
+
+
+create table Aluno (
+alunoID   integer  primary key  not null,
+nomealuno varchar(50)           not null,
+cpfaluno  varchar(11)           not null);
+
+create SEQUENCE aluno_id_sequence;
+
+set term ^ ;
+create TRIGGER aluno_autoincrement for Aluno
+active before insert position 0
+as begin
+new.alunoID = gen_id(aluno_id_sequence,1); end
+^ set term ; ^
+
+
+create table Disciplina (
+disciplinaID   integer  primary key  not null,
+nomedisciplina varchar(50)           not null);
+
+create SEQUENCE disciplina_id_sequence;
+
+set term ^ ;
+create TRIGGER disciplina_autoincrement for Disciplina
+active before insert position 0
+as begin
+new.disciplinaID = gen_id(disciplina_id_sequence,1); end
+^ set term ; ^
+
+
+create table DisciplinaProfessor (
+disciplinaprofessorID   integer   primary key   not null,
+disciplinaID   integer   not null,
+professorID   integer   not null);
+
+create SEQUENCE discprof_id_sequence;
+
+set term ^ ;
+create TRIGGER discprof_autoincrement for DisciplinaProfessor
+active before insert position 0
+as begin
+new.disciplinaprofessorID = gen_id(discprof_id_sequence,1); end
+^ set term ; ^
+
+
+CREATE TABLE AlunoDisciplinaProfessor (
+alunodisciplinaprofessorID   integer   primary key   not null,
+alunoID   integer   not null,
+disciplinaprofessorID   integer   not null,
+nota1   integer,
+nota2   integer,
+notatrabalho   integer);
+
+create SEQUENCE alunodiscprof_id_sequence;
+
+set term ^ ;
+create TRIGGER alunodiscprof_autoincrement for AlunoDisciplinaProfessor
+active before insert position 0
+as begin
+new.alunodisciplinaprofessorID = gen_id(alunodiscprof_id_sequence,1); end
+^ set term ; ^
+
+

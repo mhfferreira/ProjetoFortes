@@ -1,0 +1,82 @@
+unit RelProfessorUnit;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, FMTBcd, DB, SqlExpr, DBClient, Provider, StdCtrls, ExtCtrls;
+
+type
+  TRelProfessorForm = class(TForm)
+    RelProfessorSQLDataSet: TSQLDataSet;
+    RelProfessorSQLDataSetALUNODISCIPLINAPROFESSORID: TIntegerField;
+    RelProfessorSQLDataSetALUNOID: TIntegerField;
+    RelProfessorSQLDataSetDISCIPLINAPROFESSORID: TIntegerField;
+    RelProfessorSQLDataSetNOTA1: TIntegerField;
+    RelProfessorSQLDataSetNOTA2: TIntegerField;
+    RelProfessorSQLDataSetNOTATRABALHO: TIntegerField;
+    RelProfessorSQLDataSetALUNOID_1: TIntegerField;
+    RelProfessorSQLDataSetNOMEALUNO: TStringField;
+    RelProfessorSQLDataSetCPFALUNO: TStringField;
+    RelProfessorSQLDataSetDISCIPLINAPROFESSORID_1: TIntegerField;
+    RelProfessorSQLDataSetDISCIPLINAID: TIntegerField;
+    RelProfessorSQLDataSetPROFESSORID: TIntegerField;
+    RelProfessorSQLDataSetDISCIPLINAID_1: TIntegerField;
+    RelProfessorSQLDataSetNOMEDISCIPLINA: TStringField;
+    RelProfessorSQLDataSetPROFESSORID_1: TIntegerField;
+    RelProfessorSQLDataSetNOMEPROFESSOR: TStringField;
+    RelProfessorSQLDataSetCPFPROFESSOR: TStringField;
+    RelProfessorDataSetProvider: TDataSetProvider;
+    RelProfessorClientDataSet: TClientDataSet;
+    RelProfessorClientDataSetALUNODISCIPLINAPROFESSORID: TIntegerField;
+    RelProfessorClientDataSetALUNOID: TIntegerField;
+    RelProfessorClientDataSetDISCIPLINAPROFESSORID: TIntegerField;
+    RelProfessorClientDataSetNOTA1: TIntegerField;
+    RelProfessorClientDataSetNOTA2: TIntegerField;
+    RelProfessorClientDataSetNOTATRABALHO: TIntegerField;
+    RelProfessorClientDataSetALUNOID_1: TIntegerField;
+    RelProfessorClientDataSetNOMEALUNO: TStringField;
+    RelProfessorClientDataSetCPFALUNO: TStringField;
+    RelProfessorClientDataSetDISCIPLINAPROFESSORID_1: TIntegerField;
+    RelProfessorClientDataSetDISCIPLINAID: TIntegerField;
+    RelProfessorClientDataSetPROFESSORID: TIntegerField;
+    RelProfessorClientDataSetDISCIPLINAID_1: TIntegerField;
+    RelProfessorClientDataSetNOMEDISCIPLINA: TStringField;
+    RelProfessorClientDataSetPROFESSORID_1: TIntegerField;
+    RelProfessorClientDataSetNOMEPROFESSOR: TStringField;
+    RelProfessorClientDataSetCPFPROFESSOR: TStringField;
+    MenuPanel: TPanel;
+    FecharButton: TButton;
+    RelatorioButton: TButton;
+    DadosPanel: TPanel;
+    RelProfessorDataSource: TDataSource;
+    procedure RelatorioButtonClick(Sender: TObject);
+    procedure FecharButtonClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  RelProfessorForm: TRelProfessorForm;
+
+implementation
+
+{$R *.dfm}
+
+uses DataModuleUnit, RelProfessorImpressaoUnit;
+
+procedure TRelProfessorForm.RelatorioButtonClick(Sender: TObject);
+begin
+  Application.CreateForm(TRelProfessorImpressaoForm, RelProfessorImpressaoForm);
+  RelProfessorImpressaoForm.RLReport1.Title := 'Relatório de Professores';
+  RelProfessorImpressaoForm.RLReport1.Preview();
+end;
+
+procedure TRelProfessorForm.FecharButtonClick(Sender: TObject);
+begin
+  Close;
+end;
+
+end.

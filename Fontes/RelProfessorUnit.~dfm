@@ -1,0 +1,239 @@
+object RelProfessorForm: TRelProfessorForm
+  Left = 358
+  Top = 248
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsDialog
+  Caption = 'Relat'#243'rio de Professores'
+  ClientHeight = 208
+  ClientWidth = 319
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object MenuPanel: TPanel
+    Left = 0
+    Top = 0
+    Width = 120
+    Height = 208
+    Align = alLeft
+    TabOrder = 0
+    object FecharButton: TButton
+      Left = 10
+      Top = 55
+      Width = 100
+      Height = 30
+      Caption = '&Fechar'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 0
+      OnClick = FecharButtonClick
+    end
+    object RelatorioButton: TButton
+      Left = 10
+      Top = 20
+      Width = 100
+      Height = 30
+      Caption = '&Imprimir'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 1
+      OnClick = RelatorioButtonClick
+    end
+  end
+  object DadosPanel: TPanel
+    Left = 120
+    Top = 0
+    Width = 199
+    Height = 208
+    Align = alClient
+    BevelInner = bvLowered
+    BorderStyle = bsSingle
+    TabOrder = 1
+  end
+  object RelProfessorSQLDataSet: TSQLDataSet
+    CommandText = 
+      'select *  from ALUNODISCIPLINAPROFESSOR '#13#10'inner join ALUNO on AL' +
+      'UNO.alunoID=ALUNODISCIPLINAPROFESSOR.alunoID '#13#10'inner join DISCIP' +
+      'LINAPROFESSOR on DISCIPLINAPROFESSOR.disciplinaprofessorID=ALUNO' +
+      'DISCIPLINAPROFESSOR.disciplinaprofessorID '#13#10'inner join DISCIPLIN' +
+      'A on DISCIPLINA.disciplinaID=DISCIPLINAPROFESSOR.disciplinaID '#13#10 +
+      'inner join PROFESSOR on PROFESSOR.professorID=DISCIPLINAPROFESSO' +
+      'R.professorID'#13#10'ORDER BY NOMEPROFESSOR'#13#10
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = DataModuleBanco.ConexaoBanco
+    Left = 16
+    Top = 120
+    object RelProfessorSQLDataSetALUNODISCIPLINAPROFESSORID: TIntegerField
+      FieldName = 'ALUNODISCIPLINAPROFESSORID'
+      Required = True
+    end
+    object RelProfessorSQLDataSetALUNOID: TIntegerField
+      FieldName = 'ALUNOID'
+      Required = True
+    end
+    object RelProfessorSQLDataSetDISCIPLINAPROFESSORID: TIntegerField
+      FieldName = 'DISCIPLINAPROFESSORID'
+      Required = True
+    end
+    object RelProfessorSQLDataSetNOTA1: TIntegerField
+      FieldName = 'NOTA1'
+    end
+    object RelProfessorSQLDataSetNOTA2: TIntegerField
+      FieldName = 'NOTA2'
+    end
+    object RelProfessorSQLDataSetNOTATRABALHO: TIntegerField
+      FieldName = 'NOTATRABALHO'
+    end
+    object RelProfessorSQLDataSetALUNOID_1: TIntegerField
+      FieldName = 'ALUNOID_1'
+      Required = True
+    end
+    object RelProfessorSQLDataSetNOMEALUNO: TStringField
+      FieldName = 'NOMEALUNO'
+      Required = True
+      Size = 50
+    end
+    object RelProfessorSQLDataSetCPFALUNO: TStringField
+      FieldName = 'CPFALUNO'
+      Required = True
+      Size = 11
+    end
+    object RelProfessorSQLDataSetDISCIPLINAPROFESSORID_1: TIntegerField
+      FieldName = 'DISCIPLINAPROFESSORID_1'
+      Required = True
+    end
+    object RelProfessorSQLDataSetDISCIPLINAID: TIntegerField
+      FieldName = 'DISCIPLINAID'
+      Required = True
+    end
+    object RelProfessorSQLDataSetPROFESSORID: TIntegerField
+      FieldName = 'PROFESSORID'
+      Required = True
+    end
+    object RelProfessorSQLDataSetDISCIPLINAID_1: TIntegerField
+      FieldName = 'DISCIPLINAID_1'
+      Required = True
+    end
+    object RelProfessorSQLDataSetNOMEDISCIPLINA: TStringField
+      FieldName = 'NOMEDISCIPLINA'
+      Required = True
+      Size = 50
+    end
+    object RelProfessorSQLDataSetPROFESSORID_1: TIntegerField
+      FieldName = 'PROFESSORID_1'
+      Required = True
+    end
+    object RelProfessorSQLDataSetNOMEPROFESSOR: TStringField
+      FieldName = 'NOMEPROFESSOR'
+      Required = True
+      Size = 50
+    end
+    object RelProfessorSQLDataSetCPFPROFESSOR: TStringField
+      FieldName = 'CPFPROFESSOR'
+      Required = True
+      Size = 11
+    end
+  end
+  object RelProfessorDataSetProvider: TDataSetProvider
+    DataSet = RelProfessorSQLDataSet
+    Left = 48
+    Top = 120
+  end
+  object RelProfessorClientDataSet: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'RelAlunoDataSetProvider'
+    Left = 80
+    Top = 120
+    object RelProfessorClientDataSetALUNODISCIPLINAPROFESSORID: TIntegerField
+      FieldName = 'ALUNODISCIPLINAPROFESSORID'
+      Required = True
+    end
+    object RelProfessorClientDataSetALUNOID: TIntegerField
+      FieldName = 'ALUNOID'
+      Required = True
+    end
+    object RelProfessorClientDataSetDISCIPLINAPROFESSORID: TIntegerField
+      FieldName = 'DISCIPLINAPROFESSORID'
+      Required = True
+    end
+    object RelProfessorClientDataSetNOTA1: TIntegerField
+      FieldName = 'NOTA1'
+    end
+    object RelProfessorClientDataSetNOTA2: TIntegerField
+      FieldName = 'NOTA2'
+    end
+    object RelProfessorClientDataSetNOTATRABALHO: TIntegerField
+      FieldName = 'NOTATRABALHO'
+    end
+    object RelProfessorClientDataSetALUNOID_1: TIntegerField
+      FieldName = 'ALUNOID_1'
+      Required = True
+    end
+    object RelProfessorClientDataSetNOMEALUNO: TStringField
+      FieldName = 'NOMEALUNO'
+      Required = True
+      Size = 50
+    end
+    object RelProfessorClientDataSetCPFALUNO: TStringField
+      FieldName = 'CPFALUNO'
+      Required = True
+      Size = 11
+    end
+    object RelProfessorClientDataSetDISCIPLINAPROFESSORID_1: TIntegerField
+      FieldName = 'DISCIPLINAPROFESSORID_1'
+      Required = True
+    end
+    object RelProfessorClientDataSetDISCIPLINAID: TIntegerField
+      FieldName = 'DISCIPLINAID'
+      Required = True
+    end
+    object RelProfessorClientDataSetPROFESSORID: TIntegerField
+      FieldName = 'PROFESSORID'
+      Required = True
+    end
+    object RelProfessorClientDataSetDISCIPLINAID_1: TIntegerField
+      FieldName = 'DISCIPLINAID_1'
+      Required = True
+    end
+    object RelProfessorClientDataSetNOMEDISCIPLINA: TStringField
+      FieldName = 'NOMEDISCIPLINA'
+      Required = True
+      Size = 50
+    end
+    object RelProfessorClientDataSetPROFESSORID_1: TIntegerField
+      FieldName = 'PROFESSORID_1'
+      Required = True
+    end
+    object RelProfessorClientDataSetNOMEPROFESSOR: TStringField
+      FieldName = 'NOMEPROFESSOR'
+      Required = True
+      Size = 50
+    end
+    object RelProfessorClientDataSetCPFPROFESSOR: TStringField
+      FieldName = 'CPFPROFESSOR'
+      Required = True
+      Size = 11
+    end
+  end
+  object RelProfessorDataSource: TDataSource
+    DataSet = RelProfessorClientDataSet
+    Left = 32
+    Top = 160
+  end
+end
